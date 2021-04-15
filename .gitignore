@@ -1,0 +1,7 @@
+node_modules
+*.iml
+.idea
+.shadow-cljs
+.cpcache
+public/css
+public/js
