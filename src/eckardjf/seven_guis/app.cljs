@@ -14,25 +14,27 @@
    [:div.flex.justify-center.rounded-lg.py-10.px-16.bg-gradient-to-r {:class [from-color to-color]}
     [:div.p-10.shadow-lg.rounded-lg.bg-white.text-gray-800 children]]])
 
-(def app-db (r/atom {:count         0
-                     :temp          {:celsius "0" :fahrenheit "32"}
-                     :flight        {:flight-type :one-way}
-                     :timer         {:elapsed 0 :duration 6}
-                     :user-db       {}
-                     :circle-drawer {:circles []}}))
+(def app-db (r/atom {:counter        0
+                     :temp-converter {:celsius "0" :fahrenheit "32"}
+                     :flight-booker  {:flight-type :one-way}
+                     :timer          {:elapsed 0 :duration 6}
+                     :crud           {:users {-1 {:first-name "Hans" :last-name "Emil"}
+                                              -2 {:first-name "Max" :last-name "Mustermann"}
+                                              -3 {:first-name "Roman" :last-name "Tisch"}}}
+                     :circle-drawer  {:circles []}}))
 
 (defn app []
   [:div.w-full.grid.grid-cols-1.gap-12.my-12.mx-auto {:class "lg:w-1/2"}
    [gradient-panel {:title "Counter" :from-color "from-pink-500" :to-color "to-rose-500"}
-    [counter (r/cursor app-db [:count])]]
+    [counter (r/cursor app-db [:counter])]]
    [gradient-panel {:title "Temperature Converter" :from-color "from-yellow-500" :to-color "to-orange-500"}
-    [temp-converter (r/cursor app-db [:temp])]]
+    [temp-converter (r/cursor app-db [:temp-converter])]]
    [gradient-panel {:title "Flight Booker" :from-color "from-yellow-300" :to-color "to-yellow-500"}
-    [flight-booker (r/cursor app-db [:flight])]]
+    [flight-booker (r/cursor app-db [:flight-booker])]]
    [gradient-panel {:title "Timer" :from-color "from-green-500" :to-color "to-teal-500"}
     [timer (r/cursor app-db [:timer])]]
    [gradient-panel {:title "CRUD" :from-color "from-lightBlue-500" :to-color "to-blue-500"}
-    [crud (r/cursor app-db [:user-db])]]
+    [crud (r/cursor app-db [:crud])]]
    [gradient-panel {:title "Circle Drawer" :from-color "from-cyan-600" :to-color "to-lightBlue-700"}
     [circle-drawer (r/cursor app-db [:circle-drawer])]]])
 
