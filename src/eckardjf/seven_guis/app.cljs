@@ -5,7 +5,8 @@
             [eckardjf.seven-guis.guis.temp-converter :refer [temp-converter]]
             [eckardjf.seven-guis.guis.flight-booker :refer [flight-booker]]
             [eckardjf.seven-guis.guis.timer :refer [timer]]
-            [eckardjf.seven-guis.guis.crud :refer [crud]]))
+            [eckardjf.seven-guis.guis.crud :refer [crud]]
+            [eckardjf.seven-guis.guis.circle-drawer :refer [circle-drawer]]))
 
 (defn gradient-panel [{:keys [title from-color to-color]} children]
   [:div.mx-4
@@ -13,11 +14,12 @@
    [:div.flex.justify-center.rounded-lg.py-10.px-16.bg-gradient-to-r {:class [from-color to-color]}
     [:div.p-10.shadow-lg.rounded-lg.bg-white.text-gray-800 children]]])
 
-(def app-db (r/atom {:count   0
-                     :temp    {:celsius "0" :fahrenheit "32"}
-                     :flight  {:flight-type :one-way}
-                     :timer   {:elapsed 0 :duration 6}
-                     :user-db {}}))
+(def app-db (r/atom {:count         0
+                     :temp          {:celsius "0" :fahrenheit "32"}
+                     :flight        {:flight-type :one-way}
+                     :timer         {:elapsed 0 :duration 6}
+                     :user-db       {}
+                     :circle-drawer {:circles []}}))
 
 (defn app []
   [:div.w-full.grid.grid-cols-1.gap-12.my-12.mx-auto {:class "lg:w-1/2"}
@@ -30,7 +32,9 @@
    [gradient-panel {:title "Timer" :from-color "from-green-500" :to-color "to-teal-500"}
     [timer (r/cursor app-db [:timer])]]
    [gradient-panel {:title "CRUD" :from-color "from-lightBlue-500" :to-color "to-blue-500"}
-    [crud (r/cursor app-db [:user-db])]]])
+    [crud (r/cursor app-db [:user-db])]]
+   [gradient-panel {:title "Circle Drawer" :from-color "from-cyan-600" :to-color "to-lightBlue-700"}
+    [circle-drawer (r/cursor app-db [:circle-drawer])]]])
 
 ;; start is called by init and after code reloading finishes
 (defn ^:dev/after-load start []
