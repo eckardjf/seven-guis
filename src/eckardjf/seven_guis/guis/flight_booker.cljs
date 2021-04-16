@@ -61,13 +61,11 @@
                          :type        "text"
                          :placeholder "DD.MM.YYYY"
                          :on-change   (fn [e] (reset! return (.. e -target -value)))}]])
-        [:input {:class    ["font-bold" "py-2" "px-4" "rounded" "transition" "duration-150"
-                            "bg-yellow-500" "hover:bg-yellow-400" "text-white" "disabled:opacity-50"
-                            "focus:ring" "focus:ring-yellow-200" "focus:outline-none"]
-                 :type     "submit"
-                 :value    "Book"
-                 :disabled (case @flight-type
-                             :one-way (nil? @start-date)
-                             :round-trip (or (nil? @start-date)
-                                             (nil? @return-date)
-                                             (not (local-date/is-after @return-date @start-date))))}]]])))
+        [:input.btn.btn-yellow-dark
+         {:type     "submit"
+          :value    "Book"
+          :disabled (case @flight-type
+                      :one-way (nil? @start-date)
+                      :round-trip (or (nil? @start-date)
+                                      (nil? @return-date)
+                                      (not (local-date/is-after @return-date @start-date))))}]]])))

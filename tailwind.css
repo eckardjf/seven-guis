@@ -3,6 +3,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btn {
+    @apply py-2 px-4 font-semibold rounded focus:outline-none focus:ring focus:ring-opacity-75
+    transition-colors duration-150 disabled:opacity-50 disabled:cursor-default;
+  }
+  .btn-purple {
+    @apply bg-purple-100 hover:bg-purple-200 focus:ring-purple-300 text-purple-900;
+  }
+  .btn-yellow-dark {
+    @apply bg-yellow-500 hover:bg-yellow-400 disabled:bg-yellow-500 focus:ring-yellow-200 text-white;
+  }
+  .btn-green {
+    @apply bg-green-100 hover:bg-green-200 focus:ring-green-300;
+  }
+  .btn-emerald-dark {
+    @apply bg-emerald-500 hover:bg-emerald-400 disabled:bg-emerald-500 focus:ring-emerald-200 text-white;
+  }
+  .btn-lightBlue {
+    @apply bg-lightBlue-100 hover:bg-lightBlue-200 disabled:bg-lightBlue-100 focus:ring-lightBlue-300;
+  }
+}
+
 input[type="radio"]:checked + label span {
   @apply bg-yellow-500;
   box-shadow: 0px 0px 0px 2px white inset;

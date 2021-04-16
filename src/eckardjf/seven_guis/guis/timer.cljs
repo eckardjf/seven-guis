@@ -33,9 +33,8 @@
              :max       60
              :value     @duration
              :on-change (fn [e] (reset! duration (js/Number (.. e -target -value))))}]]
-          [:button.w-full.font-bold.py-2.px-4.rounded.transition.duration-150.bg-green-100.hover:bg-green-200
-           {:on-click (fn [_] (reset! elapsed 0))}
-           "Reset"]])
+          [:button.btn.btn-green.w-full
+           {:on-click (fn [_] (reset! elapsed 0))} "Reset"]])
 
        :component-did-update
        (fn []

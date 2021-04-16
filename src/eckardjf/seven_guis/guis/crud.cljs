@@ -59,24 +59,21 @@
               :value     (:last-name @state)
               :on-change (fn [e] (swap! state assoc :last-name (.. e -target -value)))}]
      (if-not (:selected @state)
-       [:button
-        {:class    "py-2 px-4 rounded transition duration-150 text-white font-bold bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50"
-         :disabled (or (string/blank? (:first-name @state))
+       [:button.btn.bg-emerald-500.hover:bg-emerald-400.disabled:bg-emerald-500.focus:ring-emerald-200.text-white
+        {:disabled (or (string/blank? (:first-name @state))
                        (string/blank? (:last-name @state)))
          :on-click (fn [_]
                      (swap! state assoc-in [:users (random-uuid)] (select-keys @state [:first-name :last-name]))
                      (reset-form! state))}
         "Create"]
        [:div.space-x-4
-        [:button
-         {:class    "py-2 px-4 rounded transition duration-150 text-white font-bold bg-emerald-500 hover:bg-emerald-400"
-          :on-click (fn [_]
+        [:button.btn.btn-emerald-dark
+         {:on-click (fn [_]
                       (swap! state assoc-in [:users (:selected @state)] (select-keys @state [:first-name :last-name]))
                       (reset-form! state))}
          "Update"]
-        [:button
-         {:class    "py-2 px-4 rounded transition duration-150 text-white font-bold bg-emerald-500 hover:bg-emerald-400"
-          :on-click (fn [_]
+        [:button.btn.btn-emerald-dark
+         {:on-click (fn [_]
                       (swap! state update :users dissoc (:selected @state))
                       (reset-form! state))}
          "Delete"]])]]])

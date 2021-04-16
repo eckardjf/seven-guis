@@ -80,14 +80,12 @@
       (println "render")
       [:div
        [:div.flex.items-center.justify-center.space-x-2..mb-4.text-lightBlue-800
-        [:button {:class    ["font-bold" "py-2" "px-4" "rounded" "transition" "duration-150" "bg-lightBlue-100"
-                             "hover:bg-lightBlue-200" "disabled:bg-lightBlue-100" "disabled:opacity-50" "disabled:cursor-default"]
-                  :disabled (or @adjusting? (false? (can-undo? history)))
-                  :on-click (fn [] (undo! history circles))} "Undo"]
-        [:button {:class    ["font-bold" "py-2" "px-4" "rounded" "transition" "duration-150" "bg-lightBlue-100"
-                             "hover:bg-lightBlue-200" "disabled:opacity-50" "disabled:bg-lightBlue-100" "disabled:cursor-default"]
-                  :disabled (or @adjusting? (false? (can-redo? history)))
-                  :on-click (fn [] (redo! history circles))} "Redo"]]
+        [:button.btn.btn-lightBlue
+         {:disabled (or @adjusting? (false? (can-undo? history)))
+          :on-click (fn [] (undo! history circles))} "Undo"]
+        [:button.btn.btn-lightBlue
+         {:disabled (or @adjusting? (false? (can-redo? history)))
+          :on-click (fn [] (redo! history circles))} "Redo"]]
        [:div.relative
         [:canvas.w-full.border.rounded
          {:ref             register-canvas
