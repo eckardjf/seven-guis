@@ -44,7 +44,3 @@
                                           :celsius    (some-> (parse-temp v) fahrenheit->celsius format-temp)})))}]
     [:label {:for   "fahrenheit"
              :class "block tracking-wide font-bold text-xs leading-3 mt-2 ml-1"} "Fahrenheit"]]])
-
-(comment
-
-  )
