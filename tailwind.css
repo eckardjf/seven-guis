@@ -7,3 +7,7 @@ input[type="radio"]:checked + label span {
   @apply bg-yellow-500;
   box-shadow: 0px 0px 0px 2px white inset;
 }
+
+#bottom-ring:focus-within {
+    box-shadow: 0 3px 0 0 rgba(209, 250, 229, 0.5);
+}
