@@ -28,7 +28,7 @@
                          " flight on " @start (when (= :round-trip @flight-type)
                                                 (str " returning " @return)) "."))
           (.preventDefault e))}
-       [:div.flex.flex-col.space-y-4.text-yellow-900
+       [:div.flex.flex-col.space-y-4
         [:div.flex.flex-nowrap.justify-start
          [:div.flex-1.flex.items-center.mr-4
           [:input#radio1.hidden {:type      "radio"
@@ -37,7 +37,7 @@
                                  :checked   (= :one-way @flight-type)
                                  :on-change handle-flight-type-change}]
           [:label.flex.items-center.cursor-pointer.leading-none.text-sm.whitespace-nowrap {:for "radio1"}
-           [:span.w-5.h-5.inline-block.mr-2.rounded-full.border.border-yellow-500] "One Way"]]
+           [:span.w-5.h-5.inline-block.mr-2.rounded-full.border.border-gray-300] "One Way"]]
          [:div.flex-1.flex.items-center.mr-4
           [:input#radio2.hidden {:type      "radio"
                                  :name      "flight-type"
@@ -46,21 +46,17 @@
                                  :on-change handle-flight-type-change}]
           [:label.flex.items-center.cursor-pointer.leading-none.text-sm.whitespace-nowrap {:for "radio2"}
            [:span.w-5.h-5.inline-block.mr-2.rounded-full.border.border-gray-300] "Round Trip"]]]
-        [:div [:input {:id          "start"
-                       :class       ["w-full" "appearance-none" "block" "rounded" "py-2" "px-4" "border-yellow-300" "bg-yellow-50"
-                                     "focus:border-yellow-500" "focus:ring" "focus:ring-yellow-200" "focus:ring-opacity-40"
-                                     "placeholder-yellow-900" "placeholder-opacity-40"]
-                       :type        "text"
-                       :placeholder "DD.MM.YYYY"
-                       :on-change   (fn [e] (reset! start (.. e -target -value)))}]]
+        [:div [:input.field.w-full
+               {:id          "start"
+                :type        "text"
+                :placeholder "DD.MM.YYYY"
+                :on-change   (fn [e] (reset! start (.. e -target -value)))}]]
         (when (= :round-trip @flight-type)
-          [:div [:input {:id          "return"
-                         :class       ["w-full" "appearance-none" "block" "rounded" "py-2" "px-4" "border-yellow-300" "bg-yellow-50"
-                                       "focus:border-yellow-500" "focus:ring" "focus:ring-yellow-200" "focus:ring-opacity-50"
-                                       "placeholder-yellow-900" "placeholder-opacity-40"]
-                         :type        "text"
-                         :placeholder "DD.MM.YYYY"
-                         :on-change   (fn [e] (reset! return (.. e -target -value)))}]])
+          [:div [:input.field.w-full
+                 {:id          "return"
+                  :type        "text"
+                  :placeholder "DD.MM.YYYY"
+                  :on-change   (fn [e] (reset! return (.. e -target -value)))}]])
         [:input.btn.btn-yellow-dark
          {:type     "submit"
           :value    "Book"

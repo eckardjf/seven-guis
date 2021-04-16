@@ -50,14 +50,12 @@
                  [:path {:fill-rule "evenodd" :d "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" :clip-rule "evenodd"}]]])]])))]]
    [:div
     [:div.space-y-4
-     [:input {:class     crud-input-classes
-              :type      "text"
-              :value     (:first-name @state)
-              :on-change (fn [e] (swap! state assoc :first-name (.. e -target -value)))}]
-     [:input {:class     crud-input-classes
-              :type      "text"
-              :value     (:last-name @state)
-              :on-change (fn [e] (swap! state assoc :last-name (.. e -target -value)))}]
+     [:input.field.w-full {:type      "text"
+                           :value     (:first-name @state)
+                           :on-change (fn [e] (swap! state assoc :first-name (.. e -target -value)))}]
+     [:input.field.w-full {:type      "text"
+                           :value     (:last-name @state)
+                           :on-change (fn [e] (swap! state assoc :last-name (.. e -target -value)))}]
      (if-not (:selected @state)
        [:button.btn.bg-emerald-500.hover:bg-emerald-400.disabled:bg-emerald-500.focus:ring-emerald-200.text-white
         {:disabled (or (string/blank? (:first-name @state))

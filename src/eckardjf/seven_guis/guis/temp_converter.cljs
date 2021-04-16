@@ -17,10 +17,9 @@
   [:div.flex.items-center
    [:div
     [:input {:id        "celsius"
-             :class     ["w-28" "appearance-none" "block" "rounded" "py-2" "px-4" "border-gray-300" "bg-gray-50"
-                         "focus:border-indigo-300" "focus:ring" "focus:ring-indigo-200" "focus:ring-opacity-50"
-                         (when (and (not-empty (:celsius @temp))
-                                    (nil? (:fahrenheit @temp))) "bg-red-50 border-red-400 focus:border-red-300 focus:ring-red-300")]
+             :class     ["w-28" "field" (when (and (not-empty (:celsius @temp))
+                                                   (nil? (:fahrenheit @temp)))
+                                          "field-error")]
              :type      "text"
              :value     (:celsius @temp)
              :on-change (fn [e]
@@ -32,10 +31,9 @@
    [:div.mx-4.text-4xl.-mt-6 "="]
    [:div
     [:input {:id        "fahrenheit"
-             :class     ["w-28" "appearance-none" "block" "rounded" "py-2" "px-4" "border-gray-300" "bg-gray-50"
-                         "focus:border-indigo-300" "focus:ring" "focus:ring-indigo-200" "focus:ring-opacity-50"
-                         (when (and (not-empty (:fahrenheit @temp))
-                                    (nil? (:celsius @temp))) "bg-red-50 border-red-300 focus:border-red-300 focus:ring-red-200")]
+             :class     ["w-28" "field" (when (and (not-empty (:fahrenheit @temp))
+                                                   (nil? (:celsius @temp)))
+                                          "field-error")]
              :type      "text"
              :value     (:fahrenheit @temp)
              :on-change (fn [e]
