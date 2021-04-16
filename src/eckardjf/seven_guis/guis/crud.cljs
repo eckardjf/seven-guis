@@ -1,11 +1,6 @@
 (ns eckardjf.seven-guis.guis.crud
   (:require [clojure.string :as string]))
 
-(def crud-input-classes
-  ["appearance-none" "block" "rounded" "py-2" "px-4" "w-full"
-   "border-gray-300" "bg-gray-50" "focus:border-emerald-500"
-   "focus:ring" "focus:ring-emerald-100" "focus:ring-opacity-50"])
-
 (defn reset-form! [state]
   (swap! state dissoc :selected :first-name :last-name))
 
@@ -57,7 +52,7 @@
                            :value     (:last-name @state)
                            :on-change (fn [e] (swap! state assoc :last-name (.. e -target -value)))}]
      (if-not (:selected @state)
-       [:button.btn.bg-emerald-500.hover:bg-emerald-400.disabled:bg-emerald-500.focus:ring-emerald-200.text-white
+       [:button.btn.btn-emerald-dark
         {:disabled (or (string/blank? (:first-name @state))
                        (string/blank? (:last-name @state)))
          :on-click (fn [_]
