@@ -17,6 +17,7 @@
     "release": "run-s *:release"
   },
   "dependencies": {
+    "@js-joda/core": "3.2.0",
     "@tailwindcss/forms": "^0.3.2",
     "react": "17.0.1",
     "react-dom": "17.0.1"
