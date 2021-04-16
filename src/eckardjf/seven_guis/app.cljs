@@ -1,6 +1,7 @@
 (ns eckardjf.seven-guis.app
   (:require [reagent.core :as r]
-            [reagent.dom :as rd]))
+            [reagent.dom :as rd]
+            [eckardjf.seven-guis.guis.counter :refer [counter]]))
 
 (defn gradient-panel [{:keys [title from-color to-color]} children]
   [:div.mx-4
@@ -8,21 +9,11 @@
    [:div.flex.justify-center.rounded-lg.py-10.px-16.bg-gradient-to-r {:class [from-color to-color]}
     [:div.p-10.shadow-lg.rounded-lg.bg-white.text-gray-800 children]]])
 
-(defn counter [count]
-  [:div.text-center.space-y-10
-   [:p.text-5xl.font-bold @count]
-   [:button {:class    ["rounded" "py-2" "px-4" "font-bold" "transition" "duration-150"
-                        "bg-purple-100" "hover:bg-purple-200" "text-purple-900"
-                        "focus:outline-none" "focus:ring" "focus:ring-purple-300"]
-             :on-click #(swap! count inc)} "Count"]])
-
 (def app-db (r/atom {:count 0}))
 
 (defn app []
   [:div.w-full.grid.grid-cols-1.gap-12.my-12.mx-auto {:class "lg:w-1/2"}
-   [gradient-panel {:title      "Counter"
-                    :from-color "from-pink-500"
-                    :to-color   "to-rose-500"}
+   [gradient-panel {:title "Counter" :from-color "from-pink-500" :to-color "to-rose-500"}
     [counter (r/cursor app-db [:count])]]])
 
 ;; start is called by init and after code reloading finishes
