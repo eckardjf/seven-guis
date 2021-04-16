@@ -3,7 +3,8 @@
             [reagent.dom :as rd]
             [eckardjf.seven-guis.guis.counter :refer [counter]]
             [eckardjf.seven-guis.guis.temp-converter :refer [temp-converter]]
-            [eckardjf.seven-guis.guis.flight-booker :refer [flight-booker]]))
+            [eckardjf.seven-guis.guis.flight-booker :refer [flight-booker]]
+            [eckardjf.seven-guis.guis.timer :refer [timer]]))
 
 (defn gradient-panel [{:keys [title from-color to-color]} children]
   [:div.mx-4
@@ -13,7 +14,8 @@
 
 (def app-db (r/atom {:count  0
                      :temp   {:celsius "0" :fahrenheit "32"}
-                     :flight {:flight-type :one-way}}))
+                     :flight {:flight-type :one-way}
+                     :timer  {:elapsed 0 :duration 6}}))
 
 (defn app []
   [:div.w-full.grid.grid-cols-1.gap-12.my-12.mx-auto {:class "lg:w-1/2"}
@@ -22,7 +24,9 @@
    [gradient-panel {:title "Temperature Converter" :from-color "from-yellow-500" :to-color "to-orange-500"}
     [temp-converter (r/cursor app-db [:temp])]]
    [gradient-panel {:title "Flight Booker" :from-color "from-yellow-300" :to-color "to-yellow-500"}
-    [flight-booker (r/cursor app-db [:flight])]]])
+    [flight-booker (r/cursor app-db [:flight])]]
+   [gradient-panel {:title "Timer" :from-color "from-green-500" :to-color "to-teal-500"}
+    [timer (r/cursor app-db [:timer])]]])
 
 ;; start is called by init and after code reloading finishes
 (defn ^:dev/after-load start []
