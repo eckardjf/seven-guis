@@ -21,7 +21,7 @@
               :placeholder "Filter prefix..."
               :on-change   (fn [e] (swap! state assoc :filter (.. e -target -value)))}]]]
    [:div.col-start-1
-    [:ul {:class "w-full h-56 max-h-56 rounded py-1 border border-gray-300 overflow-auto focus:outline-none"
+    [:ul {:class "w-full h-52 max-h-52 rounded py-1 border border-gray-300 overflow-auto focus:outline-none"
           :role  "listbox"}
      (let [prefix (:filter @state "")
            filtered-users (filter (fn [[_ {:keys [last-name]}]]
