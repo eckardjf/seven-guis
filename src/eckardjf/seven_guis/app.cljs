@@ -6,7 +6,8 @@
             [eckardjf.seven-guis.guis.flight-booker :refer [flight-booker]]
             [eckardjf.seven-guis.guis.timer :refer [timer]]
             [eckardjf.seven-guis.guis.crud :refer [crud]]
-            [eckardjf.seven-guis.guis.circle-drawer :refer [circle-drawer]]))
+            [eckardjf.seven-guis.guis.circle-drawer :refer [circle-drawer]]
+            [eckardjf.seven-guis.guis.cells :refer [cells]]))
 
 (defn gradient-panel [{:keys [title from-color to-color]} children]
   [:div.mx-4
@@ -21,7 +22,8 @@
                      :crud           {:users {-1 {:first-name "Hans" :last-name "Emil"}
                                               -2 {:first-name "Max" :last-name "Mustermann"}
                                               -3 {:first-name "Roman" :last-name "Tisch"}}}
-                     :circle-drawer  {:circles []}}))
+                     :circle-drawer  {:circles []}
+                     :cells          {:cols 26 :rows 100}}))
 
 (defn app []
   [:div.w-full.grid.grid-cols-1.gap-12.my-12.mx-auto {:class "lg:w-1/2"}
@@ -36,7 +38,9 @@
    [gradient-panel {:title "CRUD" :from-color "from-lightBlue-500" :to-color "to-blue-500"}
     [crud (r/cursor app-db [:crud])]]
    [gradient-panel {:title "Circle Drawer" :from-color "from-cyan-600" :to-color "to-lightBlue-700"}
-    [circle-drawer (r/cursor app-db [:circle-drawer])]]])
+    [circle-drawer (r/cursor app-db [:circle-drawer])]]
+   [gradient-panel {:title "Cells" :from-color "from-purple-400" :to-color "to-violet-500"}
+    [cells (get-in @app-db [:cells :cols]) (get-in @app-db [:cells :rows])]]])
 
 ;; start is called by init and after code reloading finishes
 (defn ^:dev/after-load start []
