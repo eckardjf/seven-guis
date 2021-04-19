@@ -77,7 +77,6 @@
         add-circle (fn [[x y]]
                      (swap! circles conj {:x x :y y :d default-diameter}))]
     (fn []
-      (println "render")
       [:div
        [:div.flex.items-center.justify-center.space-x-2..mb-4.text-lightBlue-800
         [:button.btn.btn-lightBlue
@@ -105,8 +104,7 @@
                              (.preventDefault e)
                              (when (and (false? @adjusting?) @selected)
                                (let [{:keys [x y d]} (nth @circles @selected)]
-                                 (swap! context-menu assoc :x x :y (+ y (/ d 4)) :open? true)
-                                 (println @context-menu))))}]
+                                 (swap! context-menu assoc :x x :y (+ y (/ d 4)) :open? true))))}]
         (let [{:keys [open? x y]} @context-menu]
           (when open?
             [:ul.absolute.rounded.border.shadow-md.bg-white
