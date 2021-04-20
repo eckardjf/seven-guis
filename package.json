@@ -12,9 +12,11 @@
     "shadow:watch": "shadow-cljs watch app",
     "shadow:release": "shadow-cljs release app",
     "postcss:watch": "TAILWIND_MODE=watch postcss tailwind.css -o ./public/css/main.css --verbose -w",
-    "postcss:release": "NODE_ENV=production postcss tailwind.css -o ./public/css/main.css --verbose",
+    "postcss:release": "NODE_ENV=production postcss tailwind.css -o ./release/css/main.css --verbose",
+    "html:release": "cp public/index.html release",
     "dev": "run-p -l *:watch",
-    "release": "run-s *:release"
+    "release": "run-s *:release",
+    "deploy": "git subtree push --prefix release origin gh-pages"
   },
   "dependencies": {
     "@js-joda/core": "3.2.0",
